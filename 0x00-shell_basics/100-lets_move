@@ -1,0 +1,11 @@
+#!/bin/bash
+
+mkdir -p tmp/u
+
+for file in [A-Z]*
+do
+    if [ -e "$file" ]; then
+        mv "$file" tmp/u
+    fi
+done
+
