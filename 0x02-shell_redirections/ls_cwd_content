@@ -1,0 +1,15 @@
+total 51
+-rw------- 1 u0_a283 u0_a283   12 Jun 21 16:06 *\'"Best School"'\*$?*****:)
+drwx------ 2 u0_a283 u0_a283 3452 Jun 21 16:15 .
+drwx------ 7 u0_a283 u0_a283 3452 Jun 20 17:27 ..
+-rwx------ 1 u0_a283 u0_a283   32 Jun 20 01:47 0-hello_world
+-rwx------ 1 u0_a283 u0_a283   30 Jun 21 13:27 1-confused_smiley
+-rwx------ 1 u0_a283 u0_a283   28 Jun 21 15:02 2-hellofile
+-rwx------ 1 u0_a283 u0_a283   39 Jun 21 15:04 3-twofiles
+-rwx------ 1 u0_a283 u0_a283   35 Jun 21 15:09 4-lastlines
+-rwx------ 1 u0_a283 u0_a283   35 Jun 21 15:11 5-firstlines
+-rwx------ 1 u0_a283 u0_a283   40 Jun 21 15:17 6-third_line
+-rwx------ 1 u0_a283 u0_a283   80 Jun 21 16:05 7-file
+-rwx------ 1 u0_a283 u0_a283   36 Jun 21 16:15 8-cwd_state
+-rw------- 1 u0_a283 u0_a283   16 Jun 20 01:38 README.md
+-rw------- 1 u0_a283 u0_a283    0 Jun 21 16:15 ls_cwd_content
