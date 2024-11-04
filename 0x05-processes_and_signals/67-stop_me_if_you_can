@@ -1,0 +1,12 @@
+#!/bin/bash
+# Script to stop the 7-highlander process without using kill or killall
+
+# Find the PID of the 7-highlander script
+pid=$(pgrep -f './7-highlander')
+
+# Send a SIGKILL signal by writing "9" to the "sigkill" file in the proc directory
+if [ -n "$pid" ]; then
+    echo "9" > /proc/"$pid"/sigkill
+else
+    echo "Process not found."
+fi

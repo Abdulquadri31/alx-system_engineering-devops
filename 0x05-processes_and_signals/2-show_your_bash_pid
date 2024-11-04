@@ -1,0 +1,5 @@
+#!/bin/bash
+# shellcheck disable=SC2009
+# Script to display processes containing "bash" in the command name
+
+ps -ef | grep "[b]ash"

@@ -1,0 +1,8 @@
+#!/bin/bash
+# Script to display PID and process name for processes containing "bash" in the name
+
+for pid in /proc/[0-9]*/comm; do
+    if grep -q "bash" "$pid" 2>/dev/null; then
+        echo "$(basename "$(dirname "$pid")") $(cat "$pid")"
+    fi
+done
