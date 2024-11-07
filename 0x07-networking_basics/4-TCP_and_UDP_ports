@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Display listening sockets with PID and program name
+echo "Active Internet connections (only servers)"
+echo "Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name"
+sudo netstat -tuln -p | grep 'LISTEN'
