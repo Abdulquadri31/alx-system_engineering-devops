@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# This script configures the local machine to resolve localhost to 127.0.0.2
+# and facebook.com to 8.8.8.8.
+
+# Ensure we are running as root
+if [ "$(id -u)" -ne 0 ]; then
+  echo "You must run this script as root" 1>&2
+  exit 1
+fi
+
+# Backup the /etc/hosts file before modifying
+cp /etc/hosts /etc/hosts.bak
+
+# Update /etc/hosts
+{
+  # Set localhost to 127.0.0.2
+  echo "127.0.0.2   localhost"
+
+  # Set facebook.com to 8.8.8.8
+  echo "8.8.8.8     facebook.com"
+  
+  # Append existing hosts file
+  cat /etc/hosts
+} > /etc/hosts
+
+# Restart network service to apply changes
+systemctl restart networking
+
+# Confirm changes by showing the modified /etc/hosts
+echo "Updated /etc/hosts with the following entries:"
+grep 'localhost\|facebook.com' /etc/hosts

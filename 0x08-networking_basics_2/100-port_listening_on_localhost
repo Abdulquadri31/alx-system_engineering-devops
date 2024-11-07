@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# This script listens on port 98 on localhost and prints any received text.
+
+# Define the port to listen on
+PORT=98
+
+# Ensure we are running as root to bind to port 98
+if [ "$(id -u)" -ne 0 ]; then
+  echo "You must run this script as root" 1>&2
+  exit 1
+fi
+
+echo "Starting my script."
+
+# Start listening on localhost:98 and print received text
+nc -lk 127.0.0.2 "$PORT"
