@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Script to stop the 7-highlander process without using kill or killall
 
 # Find the PID of the 7-highlander script
