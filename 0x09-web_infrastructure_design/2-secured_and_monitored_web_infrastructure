@@ -1,0 +1,69 @@
+1. Firewalls
+Why Add Them?
+
+Firewalls protect each layer of the infrastructure by restricting unwanted traffic.
+Placement:
+At the load balancer level: Blocks unauthorized access to the infrastructure.
+Between the load balancer and web servers: Ensures only legitimate traffic passes through.
+Between the application servers and database: Restricts database access to only application servers.
+What Are Firewalls For?
+
+Control incoming and outgoing network traffic.
+Filter traffic based on predefined security rules.
+
+2. SSL Certificate
+Why Add It?
+
+Ensures encrypted communication between the user's browser and the server.
+Prevents data interception during transmission (e.g., login credentials, sensitive data).
+Why Is Traffic Served Over HTTPS?
+
+Provides encryption, ensuring privacy and integrity of the data.
+Improves user trust and complies with modern browser standards (most browsers flag non-HTTPS sites as insecure).
+
+3. Monitoring Clients
+Why Add Them?
+
+Provides visibility into the health and performance of the infrastructure.
+Detects anomalies or failures proactively.
+What Is Monitoring Used For?
+
+Tracks system metrics (e.g., CPU, memory, disk usage).
+Logs application events and server errors.
+Analyzes traffic patterns and usage trends.
+How the Monitoring Tool Collects Data
+
+Agents (clients) installed on each server collect logs, metrics, and events.
+Data is sent to a centralized platform (e.g., Sumologic, Prometheus) for analysis, visualization, and alerting.
+Monitoring Web Server QPS (Queries Per Second)
+To monitor QPS:
+
+Configure monitoring agents to log HTTP request metrics.
+Set up a metric collection tool (e.g., Nginx log monitoring).
+Analyze the rate of incoming requests over time using the monitoring platform.
+Create dashboards and alerts to track QPS spikes or dips.
+Issues With This Infrastructure
+
+1. Terminating SSL at the Load Balancer Level
+
+Problem: After SSL is terminated, traffic between the load balancer and web/application servers is unencrypted.
+Impact:
+Sensitive data can be exposed if intercepted.
+Mitigation: Enable SSL passthrough or re-encrypt traffic from the load balancer to web servers.
+
+2. Single MySQL Server for Writes
+
+Problem: Having only one server for write operations creates a single point of failure (SPOF).
+Impact:
+If the primary MySQL server fails, no write operations can occur, potentially leading to data loss.
+Mitigation:
+Set up a failover mechanism with multiple writable nodes (e.g., MySQL Group Replication).
+Use automated database failover tools.
+
+3. Servers With All the Same Components
+
+Problem: Mixing components (web server, application server, database) on the same server reduces isolation.
+Impact:
+Overloaded servers affect all services (e.g., a high traffic spike on Nginx impacts database performance).
+Resource conflicts (e.g., database and application server competing for memory).
+Mitigation: Use dedicated servers or containerization (e.g., Docker) to isolate services.

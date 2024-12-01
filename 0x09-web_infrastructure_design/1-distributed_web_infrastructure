@@ -1,0 +1,49 @@
+1. Load Balancer (HAProxy)
+
+Why Add It?
+Distributes incoming traffic across multiple servers.
+Improves availability and fault tolerance.
+Distribution Algorithm: Round Robin
+Requests are sent sequentially to each web server in a loop.
+Ensures an even distribution of load.
+Active-Active Setup:
+Both web servers are active simultaneously, receiving traffic from the load balancer.
+Difference from Active-Passive:
+In Active-Passive, only one server is active at a time, and the other is on standby, used only if the active server fails.
+
+2. Web Servers (Nginx)
+
+Why Add It?
+Having multiple web servers ensures redundancy. If one server fails, the other continues serving traffic.
+Handles static content and forwards dynamic requests to the application server.
+
+3. Application Servers
+
+Why Add It?
+Processes the business logic for dynamic content.
+Running the application logic separately allows better scaling of complex computations and API requests.
+
+4. Database Cluster (MySQL Primary-Replica)
+
+Why Add It?
+Provides redundancy for data storage.
+Improves scalability by separating write (Primary) and read (Replica) operations.
+How It Works:
+Primary Node:
+Handles all write operations (inserts, updates, deletes).
+Updates are replicated asynchronously or semi-synchronously to the Replica nodes.
+Replica Nodes:
+Handle read operations (queries).
+Reduce the load on the primary node by serving read-intensive queries.
+Issues with the Infrastructure
+Single Points of Failure (SPOF)
+
+Load Balancer: If the load balancer fails, all traffic to the infrastructure stops.
+Primary Database: If the primary database fails, write operations cannot be performed, even if replica nodes handle reads.
+Security Issues
+
+No Firewall: The servers are exposed directly to potential attacks.
+No HTTPS: Communication is insecure, leaving it vulnerable to eavesdropping.
+No Monitoring
+
+Without monitoring, detecting failures (e.g., web server or database failure) or performance bottlenecks is challenging.

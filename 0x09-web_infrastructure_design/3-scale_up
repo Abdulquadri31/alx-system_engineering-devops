@@ -1,0 +1,60 @@
+README: Application Server vs Web Server Infrastructure
+
+This document describes a multi-server web infrastructure designed for scalability, security, and performance. The infrastructure splits the web server, application server, and database onto their own dedicated servers. Additionally, it includes a load balancer cluster for high availability.
+
+Infrastructure Design
+Components
+
+2 Load Balancers (HAProxy):
+
+Configured as a cluster for high availability.
+Distributes traffic between the web servers using a chosen algorithm (e.g., round-robin, least connections).
+
+Web Server (Nginx):
+
+Dedicated to serving static content (HTML, CSS, JS) and forwarding dynamic content requests to the application server.
+
+Application Server:
+
+Processes dynamic requests using the business logic and communicates with the database to fetch or update data.
+
+Database Server (MySQL):
+
+Dedicated server for storing and managing application data.
+Ensures efficient data operations without interference from other components
+
+Why Split the Components?
+
+Load Balancer Cluster:
+
+Why Add It?
+
+Prevents a single point of failure (SPOF) at the load balancer level.
+Distributes incoming traffic across web servers to improve scalability and fault tolerance.
+Cluster Configuration:
+Two HAProxy load balancers are configured as an Active-Passive cluster using a Virtual IP Address (VIP).
+If the active load balancer fails, the passive one takes over automatically.
+
+Web Server (Nginx):
+
+Why Add It?
+
+Offloads the task of serving static assets (e.g., images, stylesheets) from the application server.
+Improves response times by handling caching and compression.
+Isolates static content handling from dynamic content processing.
+
+Application Server:
+
+Why Add It?
+
+Separates the business logic from the web server, ensuring better resource utilization.
+Allows independent scaling of the application logic layer, e.g., adding more application servers for heavy API usage.
+
+Database Server (MySQL):
+
+Why Add It?
+
+Dedication to data storage ensures efficient database operations.
+Separates database processing from web and application servers to prevent resource contention.
+Potential Improvements:
+Add database replication (Primary-Replica) to enhance read performance and fault tolerance.

@@ -1,0 +1,48 @@
+1. User Access
+
+A user wants to visit www.foobar.com using their browser.
+Their browser queries the DNS system to resolve www.foobar.com into an IP address.
+
+2. DNS and Domain Name
+
+Domain Name: foobar.com is registered and configured with a DNS record.
+www Record: A CNAME (Canonical Name) or A record is set up for www.foobar.com, pointing to the IP address 8.8.8.8 (our server).
+DNS Role: It maps the user-friendly domain name (www.foobar.com) to the server’s IP address (8.8.8.8).
+
+3. Server and Web Infrastructure
+
+Server
+The server is a physical or virtual machine identified by the IP 8.8.8.8.
+It hosts the entire stack required for the website, including:
+Web Server (Nginx)
+Application Server
+Codebase
+Database (MySQL)
+Web Server (Nginx)
+Role: Handles HTTP/HTTPS requests from the user’s browser.
+It serves static content (e.g., HTML, CSS, JS) and forwards dynamic content requests to the application server.
+Application Server
+Role: Processes the logic of the application.
+It runs the codebase, handles user inputs, and communicates with the database for data retrieval or storage.
+Database (MySQL)
+Role: Stores structured data (e.g., user information, product catalogs).
+It responds to queries from the application server to provide the data needed to render web pages dynamically.
+
+4. Communication Flow
+
+User Request: The browser sends a request to www.foobar.com.
+DNS Resolution: DNS resolves www.foobar.com to 8.8.8.8.
+Web Server (Nginx): Receives the request and determines whether it can serve static files or pass the request to the application server.
+Application Server: Executes the application logic using the codebase.
+Database: Provides any required data to the application server.
+Response: The web server sends the final response (HTML page) back to the user's browser using the HTTP/HTTPS protocol.
+
+5. Issues with This Infrastructure
+
+Single Point of Failure (SPOF)
+If the single server fails, the entire website becomes unavailable.
+Downtime During Maintenance
+Restarting the web or application server (e.g., for deploying new code) results in temporary unavailability.
+Scalability
+A single server cannot handle large amounts of traffic effectively. Once resource limits (CPU, RAM, etc.) are reached, users will experience slowdowns or failures.
+
