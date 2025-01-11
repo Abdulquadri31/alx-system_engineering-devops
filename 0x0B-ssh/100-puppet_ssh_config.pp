@@ -1,11 +1,7 @@
-file_line { 'Declare identity file':
-  path  => '/home/ubuntu/.ssh/config',
-  line  => 'IdentityFile ~/.ssh/school',
-  match => '^IdentityFile',
-}
+# This Puppet manifest configures SSH client settings for passwordless login
 
-file_line { 'Turn off passwd auth':
-  path  => '/home/ubuntu/.ssh/config',
-  line  => 'PasswordAuthentication no',
-  match => '^PasswordAuthentication',
+file { '/etc/ssh/ssh_config':
+  ensure  => file,
+  content => "Host *\n  IdentityFile ~/.ssh/school\n  PasswordAuthentication no\n",
+  mode    => '0644',
 }
