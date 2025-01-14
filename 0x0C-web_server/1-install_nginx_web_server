@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Installs and configures Nginx
+
+# Update and install Nginx
+apt-get update -y && apt-get install -y nginx
+
+# Configure default Nginx page
+echo "Hello World!"
+
+# Starting Nginx without systemctl
+service nginx start
